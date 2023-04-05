@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Save n Summary",
+  "version": "1.0",
+  "description": "save article into github issue with chatGPT summary",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": ["https://*.openai.com/", "https://*.openai.azure.com/"],
+  "background": {
+    "service_worker": "src/pages/background/index.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/pages/content/index.js"]
+    }
+  ],
+  "options_page": "src/pages/options/index.html",
+  "action": {
+    "default_popup": "src/pages/popup/index.html",
+    "default_title": "SaveNSummary",
+    "default_icon": {
+      "16": "img/icon.svg",
+      "32": "img/icon.svg",
+      "48": "img/icon.svg",
+      "128": "img/icon.svg"
+    }
+  }
+}
