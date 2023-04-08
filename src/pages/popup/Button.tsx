@@ -35,7 +35,7 @@ const Button = ({ content, tags }): JSX.Element => {
       throw new Error('Invalid URL');
     }
     setIsClicked(true);
-    const processor = Process.getInstance(articleUrl, 'medium.com');
+    const processor = Process.getInstance(articleUrl);
     setButtonState(ButtonState.WAITING);
     try {
       await processor.summary(content);
@@ -44,7 +44,7 @@ const Button = ({ content, tags }): JSX.Element => {
       setTitle(tab.title || '');
       setTimeout(() => {
         setTitle('');
-      }, 5000);
+      }, 3000);
     } catch (error) {
       console.error(error);
       setButtonState(ButtonState.FAIL);

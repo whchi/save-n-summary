@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Button from './Button';
-import { getTabId } from './api';
+import { getTabId, htmlSanitizer } from './api';
 import TagsInput from 'react-tagsinput';
 import 'react-tagsinput/react-tagsinput.css';
 
@@ -18,9 +18,10 @@ const App = () => {
   }, []);
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    setContent(message.content);
+    setContent(htmlSanitizer(message.html));
   });
   const handleTagsChange = tags => {
+    console.log(tags);
     setTags(tags);
   };
   return (

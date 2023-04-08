@@ -1,3 +1,3 @@
-chrome.runtime.sendMessage({ content: document.body.innerText });
+chrome.runtime.sendMessage({ html: document.body.innerHTML });
 
 export {};
