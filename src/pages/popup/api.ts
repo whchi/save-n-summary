@@ -30,9 +30,6 @@ export const htmlSanitizer = (html: string) => {
 
 export const getTabId = async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  if (!tab) {
-    throw new Error('No active tab');
-  }
   return tab.id;
 };
 

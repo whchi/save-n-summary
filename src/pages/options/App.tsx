@@ -10,6 +10,7 @@ const App = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       const settings = await getSettings();
+      // @ts-ignore
       dispatch({ type: ActionEnum.UPDATE, payload: settings.settings });
     };
     fetchSettings();

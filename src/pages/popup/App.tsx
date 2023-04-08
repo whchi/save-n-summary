@@ -10,6 +10,7 @@ const App = () => {
   useEffect(() => {
     const getDomContent = async () => {
       chrome.scripting.executeScript({
+        //@ts-ignore
         target: { tabId: await getTabId() },
         files: ['src/pages/content/index.js'],
       });
