@@ -1,6 +1,6 @@
+import { getTabId, htmlSanitizer } from '@popup/api';
+import Button from '@popup/components/Button';
 import { useEffect, useState } from 'react';
-import Button from './Button';
-import { getTabId, htmlSanitizer } from './api';
 import TagsInput from 'react-tagsinput';
 import 'react-tagsinput/react-tagsinput.css';
 
@@ -22,7 +22,6 @@ const App = () => {
     setContent(htmlSanitizer(message.html));
   });
   const handleTagsChange = tags => {
-    console.log(tags);
     setTags(tags);
   };
   return (

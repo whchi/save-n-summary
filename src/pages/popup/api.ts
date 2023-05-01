@@ -1,4 +1,4 @@
-import { initState } from '@/pages/options/SettingsContext';
+import { initState } from '@/context';
 export class SummaryError extends Error {}
 export class SaveError extends Error {}
 

@@ -1,6 +1,6 @@
+import { Process } from '@popup/api';
+import buttonStyles from '@popup/styles/button.module.css';
 import { useState } from 'react';
-import { Process } from './api';
-import buttonStyles from './button.module.css';
 
 const LoadingDots = () => {
   return (

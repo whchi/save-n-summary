@@ -1,10 +1,11 @@
+import { ActionEnum, SettingsContext } from '@/context';
+import { clear, save } from '@options/api';
 import { useContext, useState } from 'react';
 import { TypeOptions, toast } from 'react-toastify';
-import { ActionEnum, SettingsContext } from './SettingsContext';
-import { clear, save } from './api';
 
-const SettingsGroup = () => {
+const ButtonsGroup = () => {
   const { state, dispatch } = useContext(SettingsContext);
+
   const notify = (type: TypeOptions) => {
     toast('action complete!', { type });
   };
@@ -44,4 +45,4 @@ const SettingsGroup = () => {
   );
 };
 
-export default SettingsGroup;
+export default ButtonsGroup;

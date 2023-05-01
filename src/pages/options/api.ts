@@ -1,4 +1,4 @@
-import { initState, State } from './SettingsContext';
+import { initState, State } from '@/context';
 
 export const save = (params: any) => {
   const { githubToken, openAiToken, githubRepoName, githubRepoOwner } = params;

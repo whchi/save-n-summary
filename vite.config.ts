@@ -4,7 +4,6 @@ import path from 'path';
 
 const root = path.resolve(__dirname, 'src');
 const pagesDir = path.resolve(root, 'pages');
-const componentsDir = path.resolve(root, 'components');
 const outDir = path.resolve(__dirname, 'dist');
 const publicDir = path.resolve(__dirname, 'public');
 const isDev = process.env.__DEV__ === 'true';
@@ -14,7 +13,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': root,
-      '@c': componentsDir,
+      '@options': path.resolve(pagesDir, 'options'),
+      '@popup': path.resolve(pagesDir, 'popup'),
     },
   },
   publicDir,

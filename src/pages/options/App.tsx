@@ -1,10 +1,9 @@
+import { ActionEnum, SettingsContext, initState, reducer } from '@/context';
+import ButtonsGroup from '@options/ButtonsGroup';
+import { getSettings } from '@options/api';
+import Input from '@options/components/Input';
 import { useEffect, useReducer } from 'react';
 import { ToastContainer } from 'react-toastify';
-import Input from './Input';
-import { ActionEnum, SettingsContext, initState } from './SettingsContext';
-import SettingsGroup from './SettingsGroup';
-import { getSettings } from './api';
-import reducer from './reducer';
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initState);
   useEffect(() => {
@@ -34,7 +33,7 @@ const App = () => {
             required={true}
           />
           <Input type="password" name="openAiToken" label="openAI token" />
-          <SettingsGroup />
+          <ButtonsGroup />
           <ToastContainer
             pauseOnFocusLoss={false}
             pauseOnHover={false}

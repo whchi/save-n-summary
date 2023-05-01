@@ -22,7 +22,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "@p/*": ["src/pages/*"]
+      "@options/*": ["src/pages/options/*"],
+      "@popup/*": ["src/pages/popup/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
