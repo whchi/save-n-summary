@@ -25,7 +25,7 @@ const App = () => {
     setTags(tags);
   };
   return (
-    <div className="w-96">
+    <div className="w-5/6">
       <TagsInput
         value={tags}
         onChange={handleTagsChange}

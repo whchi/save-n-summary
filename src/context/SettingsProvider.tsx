@@ -2,6 +2,7 @@ import { useReducer, useEffect } from 'react';
 import reducer from './reducer';
 import { initState, SettingsContext, ActionEnum } from './SettingsContext';
 import { getSettings } from '@options/api';
+
 const SettingsProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, initState);
 

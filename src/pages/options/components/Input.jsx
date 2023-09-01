@@ -1,6 +1,7 @@
-import { ActionEnum, SettingsContext } from '@/context';
+import { ActionEnum } from '@/context';
+import { useSettingsContext } from '@/context/SettingsContext';
 import inputShake from '@options/styles/inputShake.module.css';
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Input = ({ type, name, label, placeholder = null, required = false }) => {
@@ -9,7 +10,7 @@ const Input = ({ type, name, label, placeholder = null, required = false }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
 
-  const { state, dispatch } = useContext(SettingsContext);
+  const { state, dispatch } = useSettingsContext();
 
   const handleShowPassword = async () => {
     const { checked } = checkboxRef.current;

@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
 export type State = {
   githubToken: string;
@@ -31,3 +31,11 @@ export const SettingsContext = createContext<{
   state: initState,
   dispatch: () => {},
 });
+
+export const useSettingsContext = () => {
+  const context = useContext(SettingsContext);
+  if (context === undefined) {
+    throw new Error('useSettingsContext must be used within a SettingsProvider');
+  }
+  return context;
+};

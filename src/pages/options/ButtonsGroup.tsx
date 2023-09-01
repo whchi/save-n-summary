@@ -1,10 +1,11 @@
-import { ActionEnum, SettingsContext } from '@/context';
+import { ActionEnum } from '@/context';
+import { useSettingsContext } from '@/context/SettingsContext';
 import { clear, save } from '@options/api';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { TypeOptions, toast } from 'react-toastify';
 
 const ButtonsGroup = () => {
-  const { state, dispatch } = useContext(SettingsContext);
+  const { state, dispatch } = useSettingsContext();
 
   const notify = (type: TypeOptions) => {
     toast('action complete!', { type });
