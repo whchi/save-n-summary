@@ -13,8 +13,10 @@ export enum ActionEnum {
 }
 
 export type Action = {
-  type: ActionEnum.UPDATE | ActionEnum.REMOVE;
-  payload?: State;
+  type: ActionEnum.UPDATE;
+  payload: Partial<State>;
+} | {
+  type: ActionEnum.REMOVE;
 };
 
 export const initState: State = {

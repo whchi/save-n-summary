@@ -39,3 +39,5 @@ npm-error.log
 .yarn
 .yarnrc.yml
 .env
+.opencode
+design-system

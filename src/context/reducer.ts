@@ -1,6 +1,6 @@
 import { Action, ActionEnum, State, initState } from './SettingsContext';
 
-const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case ActionEnum.UPDATE: {
       return { ...state, ...action.payload };

@@ -7,8 +7,10 @@ const root = createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <React.StrictMode>
-    <div className="flex p-8 flex-col bg-slate-400 items-center justify-center min-w-[360px]">
-      <App />
+    <div className="min-h-screen w-[400px] bg-[#F0FDFA] flex items-center justify-center p-5">
+      <div className="w-full animate-fade-slide-up">
+        <App />
+      </div>
     </div>
   </React.StrictMode>,
 );
