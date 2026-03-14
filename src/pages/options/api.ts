@@ -1,9 +1,35 @@
 import { initState, State } from '@/context';
 
-export const save = (params: any) => {
-  const { githubToken, openAiToken, githubRepoName, githubRepoOwner } = params;
+export class ValidationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ValidationError';
+  }
+}
+
+export const validateSettings = (params: State): string[] => {
+  const errors: string[] = [];
+
+  if (params.githubToken && !params.githubToken.startsWith('ghp_')) {
+    errors.push('GitHub token must start with "ghp_"');
+  }
+
+  if (params.openAiToken && !params.openAiToken.startsWith('sk-')) {
+    errors.push('OpenAI token must start with "sk-"');
+  }
+
+  return errors;
+};
+
+export const save = (params: State): void => {
+  const errors = validateSettings(params);
+  if (errors.length > 0) {
+    throw new ValidationError(errors.join(', '));
+  }
+
+  const { githubToken, openAiToken, githubRepoName, githubRepoOwner, openAiModel } = params;
   chrome.storage.local.set({
-    settings: { githubToken, openAiToken, githubRepoName, githubRepoOwner },
+    settings: { githubToken, openAiToken, githubRepoName, githubRepoOwner, openAiModel },
   });
 };
 

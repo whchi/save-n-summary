@@ -12,11 +12,13 @@ interface ButtonProps {
 const Button = ({ content, tags }: ButtonProps): React.JSX.Element => {
   const [buttonState, setButtonState] = useState<ButtonState>('init');
   const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleClick = async () => {
     if (buttonState === 'waiting') return;
 
     try {
+      setErrorMessage('');
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       const articleUrl = tab.url;
       
@@ -37,13 +39,15 @@ const Button = ({ content, tags }: ButtonProps): React.JSX.Element => {
         setButtonState('init');
         setTitle('');
       }, 3000);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Save failed:', error);
       setButtonState('fail');
+      setErrorMessage(error.message || 'An error occurred. Please try again.');
       
       setTimeout(() => {
         setButtonState('init');
-      }, 3000);
+        setErrorMessage('');
+      }, 4000);
     }
   };
 
@@ -95,6 +99,15 @@ const Button = ({ content, tags }: ButtonProps): React.JSX.Element => {
           </span>
         )}
       </button>
+
+      {errorMessage && (
+        <div className="mt-3 animate-fade-slide-up">
+          <div className="flex items-start gap-2 p-3 text-xs font-medium rounded-xl bg-red-50 text-red-700 border border-red-200 shadow-sm shadow-red-500/10">
+            <FiAlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
+            <span className="leading-relaxed">{errorMessage}</span>
+          </div>
+        </div>
+      )}
 
       {title && (
         <div className="mt-3 text-center animate-fade-slide-up">

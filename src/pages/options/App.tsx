@@ -33,13 +33,14 @@ const App = () => {
               </div>
               <span>GitHub Integration</span>
             </div>
-            
+
             <div className="space-y-4">
               <Input
                 type="password"
                 name="githubToken"
                 label="Personal Access Token"
                 placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                hint="Must start with 'ghp_'"
               />
               <div className="grid grid-cols-2 gap-4">
                 <Input
@@ -68,13 +69,22 @@ const App = () => {
               </div>
               <span>AI Configuration</span>
             </div>
-            
+
             <Input
               type="password"
               name="openAiToken"
               label="OpenAI API Key"
               placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxx"
+              hint="Must start with 'sk-'"
             />
+            <div className="mt-4">
+              <Input
+                type="text"
+                name="openAiModel"
+                label="OpenAI Model"
+                placeholder="gpt-5-nano-2025-08-07"
+              />
+            </div>
           </div>
 
           {/* Action Buttons */}

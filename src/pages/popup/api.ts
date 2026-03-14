@@ -74,7 +74,7 @@ export class Process {
     }
     return settings;
   }
-  private async getParagraphSummary(openAiToken: string, content: string) {
+  private async getParagraphSummary(openAiToken: string, openAiModel: string, content: string) {
     try {
       const requestOptions = {
         method: 'POST',
@@ -83,7 +83,7 @@ export class Process {
           Authorization: `Bearer ${openAiToken}`,
         },
         body: JSON.stringify({
-          model: 'text-davinci-003',
+          model: openAiModel,
           prompt:
             'Summarize the following article within 50~150 characters:\n\n' + content,
           max_tokens: 100,
@@ -109,10 +109,9 @@ export class Process {
     if (!content) {
       return;
     }
-    const { openAiToken } = await this.getSettings();
+    const { openAiToken, openAiModel } = await this.getSettings();
     if (!openAiToken) {
-      alert('Please set your OpenAI API key in the extension options.');
-      return;
+      throw new SummaryError('OpenAI API Key is required. Go to extension options to set it.');
     }
     if (this.countTokens(content) > MAX_TOKENS) {
       const paragraphs = content.split(/\n+/);
@@ -127,7 +126,7 @@ export class Process {
         }
       }
       for (const chunk of chunks) {
-        await this.getParagraphSummary(openAiToken, chunk);
+        await this.getParagraphSummary(openAiToken, openAiModel, chunk);
       }
     } else {
       const requestOptions = {
@@ -137,7 +136,7 @@ export class Process {
           Authorization: `Bearer ${openAiToken}`,
         },
         body: JSON.stringify({
-          model: 'text-davinci-003',
+          model: openAiModel,
           prompt:
             'Summarize the following article within 300~500 characters:\n\n' + content,
           max_tokens: 250,
@@ -164,8 +163,7 @@ export class Process {
   public async save(tags: any = []): Promise<void> {
     const settings = await this.getSettings();
     if (!settings.githubToken) {
-      alert('Please set your GitHub personal access token in the extension options.');
-      return;
+      throw new SaveError('GitHub Token is required. Go to extension options to set it.');
     }
     const githubRequestOptions = {
       method: 'POST',

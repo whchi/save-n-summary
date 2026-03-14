@@ -5,6 +5,7 @@ export type State = {
   githubRepoOwner: string;
   githubRepoName: string;
   openAiToken: string;
+  openAiModel: string;
 };
 
 export enum ActionEnum {
@@ -24,6 +25,7 @@ export const initState: State = {
   openAiToken: '',
   githubRepoOwner: '',
   githubRepoName: '',
+  openAiModel: 'gpt-5-nano-2025-08-07',
 };
 
 export const SettingsContext = createContext<{

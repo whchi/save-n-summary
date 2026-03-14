@@ -9,6 +9,7 @@ interface InputProps {
   label: string;
   placeholder?: string | null;
   required?: boolean;
+  hint?: string;
 }
 
 const Input = ({
@@ -17,6 +18,7 @@ const Input = ({
   label,
   placeholder = null,
   required = false,
+  hint,
 }: InputProps) => {
   const [inputType, setInputType] = useState(type);
   const [showPassword, setShowPassword] = useState(false);
@@ -81,6 +83,9 @@ const Input = ({
           </button>
         )}
       </div>
+      {hint && (
+        <p className="text-xs text-gray-400 mt-1">{hint}</p>
+      )}
     </div>
   );
 };
