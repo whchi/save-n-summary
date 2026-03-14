@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Save n Summary",
   "version": "1.1",
-  "description": "save article into github issue with chatGPT summary",
+  "description": "save article into github issue with OpenAI API summary",
   "permissions": ["activeTab", "storage", "scripting"],
   "host_permissions": ["https://*.openai.com/", "https://*.openai.azure.com/"],
   "background": {
